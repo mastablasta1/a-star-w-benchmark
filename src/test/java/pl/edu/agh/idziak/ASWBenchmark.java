@@ -1,5 +1,6 @@
 package pl.edu.agh.idziak;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openjdk.jmh.annotations.*;
 import pl.edu.agh.idziak.asw.impl.AlgorithmType;
@@ -12,11 +13,15 @@ import java.util.concurrent.TimeUnit;
  * Created by Tomasz on 15.03.2017.
  */
 @State(Scope.Benchmark)
+@Ignore
 public class ASWBenchmark {
+
+    private final String TWO_ENTITIES_7X7 = "7x7 - 2 entities";
+    private final String SWAP_OVERSTEPPING_4_ENTITIES = "swap (with overstepping) - 4 entities - 7x3";
 
     @Test
     public void runBenchmarks() throws Exception {
-        MicrobenchmarkRunner.runTestClasses(ASWBenchmark.class);
+        MicrobenchmarkRunner.runTestClasses(ASWBenchmark.class, true, true);
     }
 
     private ASWTestSuite testSuite;
@@ -26,17 +31,25 @@ public class ASWBenchmark {
         testSuite = new ASWTestSuite(Paths.get("test1.json"));
     }
 
-    @Benchmark
+//    @Benchmark
     @OutputTimeUnit(value = TimeUnit.MILLISECONDS)
     @BenchmarkMode(value = Mode.AverageTime)
     public void benchmarkWavefront() {
-        testSuite.executeTest("swap (with overstepping) - 4 entities - 7x3", AlgorithmType.WAVEFRONT);
+        testSuite.executeTest(SWAP_OVERSTEPPING_4_ENTITIES, AlgorithmType.WAVEFRONT);
+        System.out.println("done");
+    }
+
+//    @Benchmark
+    @OutputTimeUnit(value = TimeUnit.MILLISECONDS)
+    @BenchmarkMode(value = Mode.AverageTime)
+    public void benchmarkASW() {
+        testSuite.executeTest(SWAP_OVERSTEPPING_4_ENTITIES, AlgorithmType.ASW);
     }
 
     @Benchmark
     @OutputTimeUnit(value = TimeUnit.MILLISECONDS)
     @BenchmarkMode(value = Mode.AverageTime)
-    public void benchmarkASW() {
-        testSuite.executeTest("swap (with overstepping) - 4 entities - 7x3", AlgorithmType.ASW);
+    public void benchmarkAStar() {
+        testSuite.executeTest(TWO_ENTITIES_7X7, AlgorithmType.ASTAR_ONLY);
     }
 }

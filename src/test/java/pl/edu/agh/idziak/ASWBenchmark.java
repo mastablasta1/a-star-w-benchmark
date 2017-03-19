@@ -21,7 +21,7 @@ public class ASWBenchmark {
 
     @Test
     public void runBenchmarks() throws Exception {
-        MicrobenchmarkRunner.runTestClasses(ASWBenchmark.class, true, true);
+        MicrobenchmarkRunner.runTestClasses(ASWBenchmark.class, false, false);
     }
 
     private ASWTestSuite testSuite;
@@ -50,6 +50,6 @@ public class ASWBenchmark {
     @OutputTimeUnit(value = TimeUnit.MILLISECONDS)
     @BenchmarkMode(value = Mode.AverageTime)
     public void benchmarkAStar() {
-        testSuite.executeTest(TWO_ENTITIES_7X7, AlgorithmType.ASTAR_ONLY);
+        testSuite.executeTest(SWAP_OVERSTEPPING_4_ENTITIES, AlgorithmType.ASTAR_ONLY);
     }
 }

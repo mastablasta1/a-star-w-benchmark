@@ -19,8 +19,8 @@ public class MicrobenchmarkRunner {
                 .forks(debugMode ? 0 : 1)
                 .threads(1)
                 .measurementIterations(1)
-                .operationsPerInvocation(5)
-                .jvmArgsAppend("-Djmh.stack.lines=5 -Djmh.stack.top=20");
+                .operationsPerInvocation(5);
+                //.jvmArgsAppend("-Djmh.stack.lines=5 -Djmh.stack.top=20");
         if (profileStack) {
             opt.addProfiler(StackProfiler.class);
         }

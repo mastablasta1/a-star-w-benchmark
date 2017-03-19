@@ -77,6 +77,17 @@
     ]
   },
   {
+    "name": "5x5 - 4 entities",
+    "stateSpaceRows": 5,
+    "stateSpaceCols": 5,
+    "entities": [
+      { "id": 1, "row": 0, "col": 0, "targetRow": 4, "targetCol": 4 },
+      { "id": 2, "row": 4, "col": 4, "targetRow": 0, "targetCol": 0 },
+      { "id": 3, "row": 0, "col": 4, "targetRow": 4, "targetCol": 0 },
+      { "id": 4, "row": 4, "col": 0, "targetRow": 0, "targetCol": 4 }
+    ]
+  },
+  {
     "name": "5x5 - 6 entities",
     "stateSpaceRows": 5,
     "stateSpaceCols": 5,

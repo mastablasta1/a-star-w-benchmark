@@ -2,17 +2,10 @@ package pl.edu.agh.idziak;
 
 import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 @State(Scope.Benchmark)
 public class FillingCollectionsBenchmarks {
@@ -27,6 +20,7 @@ public class FillingCollectionsBenchmarks {
     private ArrayList<Integer> arrayList;
     private ImmutableMap<Integer, Integer> immutableMap;
     private int[] array;
+
 
     @Setup
     public void setup() {

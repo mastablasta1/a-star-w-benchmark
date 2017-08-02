@@ -1,4 +1,4 @@
-package pl.edu.agh.idziak;
+package pl.edu.agh.idziak.other;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -7,11 +7,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
+import pl.edu.agh.idziak.MicrobenchmarkRunner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 @State(Scope.Benchmark)
 @Ignore
@@ -25,6 +23,7 @@ public class IterationBenchmarks {
     private final int SIZE = 1000000;
     private HashMap<Integer, Integer> map = new HashMap<>(SIZE);
     private ArrayList<Integer> arrayList = new ArrayList<>(SIZE);
+    private LinkedList<Integer> linkedList = new LinkedList<>();
     private ImmutableMap<Integer, Integer> immutableMap;
     private int[] array;
     private ImmutableList<Integer> immutableList;
@@ -40,6 +39,7 @@ public class IterationBenchmarks {
             builder.put(i, i);
             array[i] = i;
             builder1.add(i);
+            linkedList.add(i);
         }
         immutableMap = builder.build();
         immutableList = builder1.build();
@@ -56,8 +56,17 @@ public class IterationBenchmarks {
 
     @Benchmark
     @BenchmarkMode(Mode.Throughput)
-    public void arrayListIterationBenchmark(Blackhole blackhole) throws Exception {
+    public void arrayListIteratorBenchmark(Blackhole blackhole) throws Exception {
         Iterator<Integer> iterator = arrayList.iterator();
+        while (iterator.hasNext()) {
+            blackhole.consume(iterator.next());
+        }
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.Throughput)
+    public void linkedListIteratorBenchmark(Blackhole blackhole) throws Exception {
+        Iterator<Integer> iterator = linkedList.iterator();
         while (iterator.hasNext()) {
             blackhole.consume(iterator.next());
         }

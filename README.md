@@ -1,2 +1,2 @@
 # a-star-w-benchmark
-Benchmark project for A*W algorithm
+BenchmarkRun project for A*W algorithm

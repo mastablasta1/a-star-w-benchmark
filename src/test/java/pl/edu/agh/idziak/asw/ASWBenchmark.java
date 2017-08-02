@@ -1,8 +1,10 @@
-package pl.edu.agh.idziak;
+package pl.edu.agh.idziak.asw;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openjdk.jmh.annotations.*;
+import pl.edu.agh.idziak.ASWTestSuite;
+import pl.edu.agh.idziak.MicrobenchmarkRunner;
 import pl.edu.agh.idziak.asw.impl.AlgorithmType;
 
 import java.io.IOException;
